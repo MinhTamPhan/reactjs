@@ -5,14 +5,14 @@ import { Card, CardImg, CardText, CardBody,
 
 class DishDetail extends Component {
 	
-	constructor(props) {
-		super(props);
-	}
+	// constructor(props) {
+	// 	super(props);
+	// }
 
 	renderDish() {
 		if (this.props.dish != null)
 			return(
-				<div className='col-md-5'>
+				<div className='col-12 col-md-5 m-1'>
 					<Card>
 						<CardImg top src={this.props.dish.image} alt={this.props.dish.name} />
 							<CardBody>
@@ -29,7 +29,7 @@ class DishDetail extends Component {
 	}
 	renderComments(comments) {
 		return (
-			<div className='col-md-5'>
+			<div className='col-12 col-md-5 m-1'>
 				<h4> Comments </h4>
 				{comments.map((item) => {
 					return (
