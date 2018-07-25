@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Card, CardImg, CardText, CardBody,
-	CardTitle } from 'reactstrap';
-	
+	CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import {Link}  from 'react-router-dom';
 
 class DishDetail extends Component {
 	
@@ -12,15 +12,35 @@ class DishDetail extends Component {
 	renderDish() {
 		if (this.props.dish != null)
 			return(
-				<div className='col-12 col-md-5 m-1'>
-					<Card>
-						<CardImg top src={this.props.dish.image} alt={this.props.dish.name} />
-							<CardBody>
-								<CardTitle>{this.props.dish.name}</CardTitle>
-								<CardText>{this.props.dish.description}</CardText>
-							</CardBody>
-					</Card>
-				</div>
+        <div className="container">
+          <div className="row">
+            <Breadcrumb>
+              <BreadcrumbItem>
+                <Link to='/home'>Home </Link>
+              </BreadcrumbItem>
+              <BreadcrumbItem>
+                <Link to='/menu'>Menu </Link>
+              </BreadcrumbItem>
+              <BreadcrumbItem active>
+                {this.props.dish.name}
+              </BreadcrumbItem>
+            </Breadcrumb>
+            <div className="col-12">
+              <h3>Menu</h3>
+              <hr/>
+              
+            </div>
+          </div>
+          <div className='col-12 col-md-5 m-1'>
+            <Card>
+              <CardImg top src={this.props.dish.image} alt={this.props.dish.name} />
+                <CardBody>
+                  <CardTitle>{this.props.dish.name}</CardTitle>
+                  <CardText>{this.props.dish.description}</CardText>
+                </CardBody>
+            </Card>
+          </div>
+        </div>
 				);
 		else
 			return(
@@ -51,7 +71,7 @@ class DishDetail extends Component {
 		return (
 			<div className='row'>
 				{this.renderDish()}
-				{this.props.dish != null ? this.renderComments(this.props.dish.comments) : null}
+				{this.props.dish != null ? this.renderComments(this.props.comments) : null}
 			</div>
 		);
 	}
