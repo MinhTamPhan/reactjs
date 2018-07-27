@@ -8,7 +8,8 @@ import { PROMOTIONS } from '../shared/promotions';
 import { LEADERS } from '../shared/leaders';
 import { DISHES } from '../shared/dishes';
 import Contact from './ContactComponent';
-import DishDetail from './‎‎DishdetailComponent‎‎ ';
+import DishDetail from './DishdetailComponent';
+import About from './AboutComponent';
 import { Switch, Route, Redirect } from 'react-router-dom'; 
 
 class Main extends Component {
@@ -60,6 +61,7 @@ class Main extends Component {
           <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />}/>
           <Route exact path='/menu/:dishId' component={DishWithId} />}/>          
           <Route exact path='/contactus' component={Contact} />} />
+          <Route exact path='/aboutus' component={() => <About leaders={this.state.leaders} />} />} />
           <Redirect to='/home' />
         </Switch>
         <Footer/>
