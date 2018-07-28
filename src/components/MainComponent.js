@@ -46,16 +46,7 @@ class Main extends Component {
     }
     return (
       <div>
-        {/* <Navbar dark color="primary">
-          <div className="container">
-            <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
-          </div>
-        </Navbar> */}
         <Header />
-        {/* <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />
-        <div className="container">
-          <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} />
-        </div> */}
         <Switch>
           <Route path='/home' component={HomePage}/>
           <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />}/>
