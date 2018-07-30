@@ -11,19 +11,18 @@ function About(props) {
         <Media left href="#">
           <Media object src={props.leader.image} alt={props.leader.name} />
         </Media>
-        <div className='container'>
-        <Media body>       
-          <Media heading>
-            {props.leader.name} 
-          </Media>
+          <div className='container'>
+          <Media body>       
+            <Media heading>
+              {props.leader.name} 
+            </Media>
             <p>
               {props.leader.designation} 
             </p>
             <p>
               {props.leader.description} 
-            </p>
-         
-        </Media>
+            </p>          
+          </Media>
         </div>
       </Media>
     );

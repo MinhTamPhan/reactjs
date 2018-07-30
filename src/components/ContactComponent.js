@@ -131,30 +131,28 @@ class Contact extends Component {
                 <Label for='firstName' md={2}>First Name</Label>
                 <Col md={10}>
                   <Input type='text' id='firstName' name='firstName' placeholder='First Name' value={this.state.firstName} valid={errors.firstName === ''} invalid={errors.firstName !== ''}
-                  onBlur={this.handleBlur('firstName')}
-                  onChange={this.handleInputChange}/>
+                  onBlur={this.handleBlur('firstName')} onChange={this.handleInputChange} autocomplete="off" />
                   <FormFeedback>{errors.firstName}</FormFeedback>
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label for='lastName' md={2}>Last Name</Label>
                 <Col md={10}>
-                  <Input type='text' id='lastName' name='lastName' placeholder='Last Name' value={this.state.lastName} valid={errors.lastName === ''} invalid={errors.lastName !== ''}
-                   onBlur={this.handleBlur('lastName')} onChange={this.handleInputChange}/>
+                  <Input type='text' id='lastName' name='lastName' placeholder='Last Name' value={this.state.lastName} valid={errors.lastName === ''} invalid={errors.lastName !== ''}  onBlur={this.handleBlur('lastName')} onChange={this.handleInputChange} autocomplete="off" />
                   <FormFeedback>{errors.lastName}</FormFeedback>
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label for='telNum' md={2}>Contact Tel.</Label>
                 <Col md={10}>
-                  <Input type='text' id='telNum' name='telNum' placeholder='Tel. Number' value={this.state.telNum} valid={errors.telNum === ''} invalid={errors.telNum !== ''} onBlur={this.handleBlur('telNum')}  onChange={this.handleInputChange}/>
+                  <Input type='text' id='telNum' name='telNum' placeholder='Tel. Number' value={this.state.telNum} valid={errors.telNum === ''} invalid={errors.telNum !== ''} onBlur={this.handleBlur('telNum')}  onChange={this.handleInputChange} autocomplete="off" />
                   <FormFeedback>{errors.telNum}</FormFeedback>
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label for='email' md={2}>Email</Label>
                 <Col md={10}>
-                  <Input type='text' id='email' name='email' placeholder='Email' value={this.state.email} valid={errors.email === ''} invalid={errors.email !== ''}   onBlur={this.handleBlur('email')}  onChange={this.handleInputChange}/>
+                  <Input type='text' id='email' name='email' placeholder='Email' value={this.state.email} valid={errors.email === ''} invalid={errors.email !== ''}   onBlur={this.handleBlur('email')}  onChange={this.handleInputChange} autocomplete="off" />
                   <FormFeedback>{errors.email}</FormFeedback>
                 </Col>
               </FormGroup>
@@ -162,7 +160,7 @@ class Contact extends Component {
                 <Col md={{size: 6, offset:2}}>
                   <FormGroup >
                     <label check='true'>
-                      <Input type='checkbox' name='agree' checked={this.state.agree} onChange={this.handleInputChange}/>{' '}
+                      <Input type='checkbox' name='agree' checked={this.state.agree} onChange={this.handleInputChange} />{' '}
                       <strong>May we contact you?</strong>
                     </label>
                   </FormGroup>
@@ -177,7 +175,7 @@ class Contact extends Component {
               <FormGroup row>
                 <Label for='feedBack' md={2}>your Feedback</Label>
                 <Col md={10}>
-                  <Input type='textarea' id='feedBack' rows='12' min-row='3' name='message' placeholder='Email' value={this.state.message} onChange={this.handleInputChange}/>
+                  <Input type='textarea' id='feedBack' rows='12' min-row='3' name='message' placeholder='Email' value={this.state.message} onChange={this.handleInputChange} autocomplete="off" />
                 </Col>
               </FormGroup>
               <FormGroup row>
