@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { Card, CardImg, CardText, CardBody,
 	CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
-import {Link}  from 'react-router-dom';
+import { Link }  from 'react-router-dom';
+import Comment from './CommentForm';
 
 const RenderDish = (props) =>{
   if (props.dish != null)
@@ -55,14 +56,15 @@ const RenderComments = (props) => {
           </div>
         );
       })}
+       <Comment />
     </div>
   )
 }
 class DishDetail extends Component {
 	
-	constructor(props) {
-		super(props);
-	}	
+	// constructor(props) {
+	// 	super(props);
+	// }	
 	render() {
 		return (
       <div className="container">
