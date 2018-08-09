@@ -39,11 +39,11 @@ const RenderDish = (props) =>{
     );
 }
 
-const RenderComments = (props) => {
+const RenderComments = ({comments, addComment, dishId}) => {
   return (
     <div>
       <h4> Comments </h4>
-      {props.comments.map((item) => {
+      {comments.map((item) => {
         return (
           <div key={item.id}>
             <p>{item.comment}</p>
@@ -56,7 +56,7 @@ const RenderComments = (props) => {
           </div>
         );
       })}
-       <Comment />
+       <Comment dishId={dishId} addComment={addComment} />
     </div>
   )
 }
@@ -83,7 +83,7 @@ class DishDetail extends Component {
               <RenderDish dish={this.props.dish} />
           </div>
           <div className="col-12 col-md-5 m-1">
-              <RenderComments comments={this.props.comments} />
+              <RenderComments comments={this.props.comments} addComment={this.props.addComment} dishId={this.props.dish.id}/>
           </div>
       </div>
       </div>
