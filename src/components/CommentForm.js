@@ -27,7 +27,7 @@ class Comment extends Component {
     // console.log('current state is: ' + JSON.stringify(values));
     alert('Current State is: ' + JSON.stringify(values) + JSON.stringify(this.props));
     this.toggleModal()
-    this.props.addComment(this.props.dishId, values.rating, values.yourName, values.comment);
+    this.props.postComment(this.props.dishId, values.rating, values.yourName, values.comment);
   }
 
   render() {

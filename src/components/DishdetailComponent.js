@@ -4,9 +4,10 @@ import { Card, CardImg, CardText, CardBody,
 import { Link }  from 'react-router-dom';
 import Comment from './CommentForm';
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseURL';
 
-const RenderDish = (props) =>{
-  if(props.isLoading) {
+const RenderDish = ({dish}) =>{
+  if(dish.isLoading) {
     return (
       <div className='container'>
          <div className='row'>
@@ -15,16 +16,16 @@ const RenderDish = (props) =>{
       </div>
     )
   }
-  else if(props.errMsg) {
+  else if(dish.errMsg) {
     return (
       <div className='container'>
          <div className='row'>
-          <h4>{props.errMsg}</h4>
+          <h4>{dish.errMsg}</h4>
          </div>
       </div>
     )
   }
-  else if (props.dish != null)
+  else if (dish != null)
     return(
         <div >
           <Breadcrumb>
@@ -35,7 +36,7 @@ const RenderDish = (props) =>{
               <Link to='/menu'>Menu </Link>
             </BreadcrumbItem>
             <BreadcrumbItem active>
-              {props.dish.name}
+              {dish.name}
             </BreadcrumbItem>
           </Breadcrumb>
           <div className="col-12">
@@ -44,10 +45,10 @@ const RenderDish = (props) =>{
             
           </div>
           <Card>
-            <CardImg top src={props.dish.image} alt={props.dish.name} />
+            <CardImg top src={ baseUrl + dish.image} alt={dish.name} />
               <CardBody>
-                <CardTitle>{props.dish.name}</CardTitle>
-                <CardText>{props.dish.description}</CardText>
+                <CardTitle>{dish.name}</CardTitle>
+                <CardText>{dish.description}</CardText>
               </CardBody>
           </Card>
         </div>
@@ -58,7 +59,7 @@ const RenderDish = (props) =>{
     );
 }
 
-const RenderComments = ({comments, addComment, dishId}) => {
+const RenderComments = ({comments, postComment, dishId}) => {
   return (
     <div>
       <h4> Comments </h4>
@@ -75,7 +76,7 @@ const RenderComments = ({comments, addComment, dishId}) => {
           </div>
         );
       })}
-       <Comment dishId={dishId} addComment={addComment} />
+       <Comment dishId={dishId} postComment={postComment} />
     </div>
   )
 }
@@ -88,22 +89,22 @@ class DishDetail extends Component {
 		return (
       <div className="container">
       <div className="row">
-          <Breadcrumb>
-              <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
-              <BreadcrumbItem active>{this.props.dish.name}</BreadcrumbItem>
-          </Breadcrumb>
-          <div className="col-12">
-              <h3>{this.props.dish.name}</h3>
-              <hr />
-          </div>                
+				<Breadcrumb>
+					<BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+					<BreadcrumbItem active>{this.props.dish.name}</BreadcrumbItem>
+				</Breadcrumb>
+				<div className="col-12">
+					<h3>{this.props.dish.name}</h3>
+					<hr />
+				</div>                
       </div>
       <div className="row">
-          <div className="col-12 col-md-5 m-1">
-              <RenderDish dish={this.props.dish} />
-          </div>
-          <div className="col-12 col-md-5 m-1">
-              <RenderComments comments={this.props.comments} addComment={this.props.addComment} dishId={this.props.dish.id}/>
-          </div>
+				<div className="col-12 col-md-5 m-1">
+					<RenderDish dish={this.props.dish} />
+				</div>
+				<div className="col-12 col-md-5 m-1">
+					<RenderComments comments={this.props.comments} postComment={this.props.postComment} dishId={this.props.dish.id}/>
+				</div>
       </div>
       </div>
 		);
