@@ -5,6 +5,7 @@ import { Link }  from 'react-router-dom';
 import Comment from './CommentForm';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseURL';
+import { FadeTransform, Fade, Stager } from 'react-animation-components';
 
 const RenderDish = ({dish}) =>{
   if(dish.isLoading) {
@@ -27,31 +28,21 @@ const RenderDish = ({dish}) =>{
   }
   else if (dish != null)
     return(
-        <div >
-          <Breadcrumb>
-            <BreadcrumbItem>
-              <Link to='/home'>Home </Link>
-            </BreadcrumbItem>
-            <BreadcrumbItem>
-              <Link to='/menu'>Menu </Link>
-            </BreadcrumbItem>
-            <BreadcrumbItem active>
-              {dish.name}
-            </BreadcrumbItem>
-          </Breadcrumb>
-          <div className="col-12">
-            <h3>Menu</h3>
-            <hr/>
-            
-          </div>
-          <Card>
-            <CardImg top src={ baseUrl + dish.image} alt={dish.name} />
-              <CardBody>
-                <CardTitle>{dish.name}</CardTitle>
-                <CardText>{dish.description}</CardText>
-              </CardBody>
-          </Card>
-        </div>
+			<div className='col-12 col-md-5 m-1'>
+				<FadeTransform
+				in
+				transformProps={{
+						exitTransform: 'scale(0.5) translateY(-50%)'
+				}}>
+						<Card>
+							<CardImg top src={ baseUrl + dish.image} alt={dish.name} />
+								<CardBody>
+									<CardTitle>{dish.name}</CardTitle>
+									<CardText>{dish.description}</CardText>
+								</CardBody>
+						</Card>
+					</FadeTransform>
+				</div>
       );
   else
     return(
@@ -61,21 +52,27 @@ const RenderDish = ({dish}) =>{
 
 const RenderComments = ({comments, postComment, dishId}) => {
   return (
-    <div>
+    <div className='col-12 col-md-5 m-1'>
       <h4> Comments </h4>
-      {comments.map((item) => {
-        return (
-          <div key={item.id}>
-            <p>{item.comment}</p>
-            <p>{'-- ' + item.author + ', ' + 
-            new Intl.DateTimeFormat('en-GB', { 
-              year: 'numeric', 
-              month: 'long', 
-              day: '2-digit' 
-            }).format(new Date(item.date))}</p>
-          </div>
-        );
-      })}
+			<ul className='list-untyled'>
+				<Stager in>
+					{comments.map((item) => {
+						return (
+							<Fade in>
+								<li key={item.id}>
+									<p>{item.comment}</p>
+									<p>{'-- ' + item.author + ', ' + 
+									new Intl.DateTimeFormat('en-GB', { 
+										year: 'numeric', 
+										month: 'long', 
+										day: '2-digit' 
+									}).format(new Date(item.date))}</p>
+								</li>
+							</Fade>
+						);
+					})}
+				</Stager>
+			</ul>
        <Comment dishId={dishId} postComment={postComment} />
     </div>
   )
@@ -98,13 +95,10 @@ class DishDetail extends Component {
 					<hr />
 				</div>                
       </div>
-      <div className="row">
-				<div className="col-12 col-md-5 m-1">
-					<RenderDish dish={this.props.dish} />
-				</div>
-				<div className="col-12 col-md-5 m-1">
-					<RenderComments comments={this.props.comments} postComment={this.props.postComment} dishId={this.props.dish.id}/>
-				</div>
+      <div className="row">				
+				<RenderDish dish={this.props.dish} />	
+				<RenderComments comments={this.props.comments} postComment={this.props.postComment} dishId={this.props.dish.id}/>
+
       </div>
       </div>
 		);
